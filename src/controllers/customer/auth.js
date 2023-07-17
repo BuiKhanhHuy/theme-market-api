@@ -1,7 +1,8 @@
-import { authService } from '../services';
-import dataResponse from '../utils/dataResponse';
-import tryCatch from '../utils/tryCatch';
-import { authValidator } from '../validators';
+
+import tryCatch from '../../utils/tryCatch';
+import dataResponse from '../../utils/dataResponse';
+import { authValidator } from '../../validators/customer';
+import { authService } from '../../services/customer';
 
 export const register = async (req, res) => {
   try {

@@ -1,13 +1,9 @@
-import userRoute from './user';
-import authRoute from './auth';
+import customerRouter from "./customer";
+import adminRouter from "./admin"
 
 const initRoutes = (app) => {
-  app.use('/v1/auth', authRoute)
-  app.use('/v1/users', userRoute);
-
-  return app.use('/', (req, res) => {
-    return 'SERVER ON.';
-  });
+  app.use('/v1', customerRouter);
+  app.use('/v1/admin', adminRouter);
 };
 
 export default initRoutes;

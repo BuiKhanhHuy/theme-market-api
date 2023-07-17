@@ -8,10 +8,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      User.hasOne(models.Order, {
+        foreignKey: 'userId',
+        as: 'orders',
+      });
+      User.hasOne(models.Blog, {
+        foreignKey: 'userId',
+        as: 'blogs',
+      });
       User.belongsTo(models.Profession, {
         foreignKey: 'professionId',
         targetKey: 'id',
         as: 'profession',
+      });
+      User.belongsToMany(models.Product, {
+        through: models.SavedProduct,
+        as: 'savedProducts',
       });
     }
   }
@@ -20,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING(128),
         allowNull: false,
+        unique: true,
       },
       firstName: {
         type: DataTypes.STRING(50),
@@ -36,6 +49,14 @@ module.exports = (sequelize, DataTypes) => {
       passwordHash: {
         type: DataTypes.STRING(255),
         allowNull: true,
+      },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+      isEmailVerified: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
       deletedAt: {
         type: DataTypes.DATE,

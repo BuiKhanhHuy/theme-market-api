@@ -1,6 +1,6 @@
 import status from 'http-status';
-import AppError from '../AppError';
-import * as jwtHelper from '../helpers/jwtHelper';
+import AppError from '../../AppError';
+import * as jwtHelper from '../../helpers/jwtHelper';
 
 export const register = () =>
   new Promise((resolve, reject) => {

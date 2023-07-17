@@ -1,7 +1,6 @@
 import express from 'express';
 import status from 'http-status';
-
-import { authController } from '../controllers';
+import { authController } from '../../controllers/customer';
 
 const router = express.Router();
 

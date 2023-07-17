@@ -12,6 +12,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING(128),
         allowNull: false,
+        unique: true
       },
       firstName: {
         type: Sequelize.STRING(50),
@@ -32,6 +33,14 @@ module.exports = {
       roleName: {
         type: Sequelize.STRING(30),
         allowNull: false,
+      },
+      isActive: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      isEmailVerified: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       deletedAt: {
         type: Sequelize.DATE,

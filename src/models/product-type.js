@@ -8,7 +8,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      ProductType.hasOne(models.Product, {
+        foreignKey: 'productTypeId',
+        as: 'products',
+      });
+      ProductType.hasOne(models.Hire, {
+        foreignKey: 'productTypeId',
+        as: 'hires',
+      });
     }
   }
   ProductType.init(
@@ -16,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING(100),
         allowNull: false,
+        unique: true,
       },
       description: {
         type: DataTypes.STRING(255),
