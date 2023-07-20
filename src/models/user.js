@@ -1,4 +1,5 @@
 'use strict';
+import bcrypt from 'bcryptjs';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -26,6 +27,20 @@ module.exports = (sequelize, DataTypes) => {
         as: 'savedProducts',
       });
     }
+
+    static beforeCreate(user) {
+      if (user.password) {
+        const salt = bcrypt.genSaltSync(10);
+        user.password = bcrypt.hashSync(user.password, salt);
+      }
+    }
+
+    static beforeUpdate(user) {
+      if (user.password) {
+        const salt = bcrypt.genSaltSync(10);
+        user.password = bcrypt.hashSync(user.password, salt);
+      }
+    }
   }
   User.init(
     {
@@ -46,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(500),
         allowNull: true,
       },
-      passwordHash: {
+      password: {
         type: DataTypes.STRING(255),
         allowNull: true,
       },
@@ -74,6 +89,10 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'User',
+      hooks: {
+        beforeCreate: User.beforeCreate,
+        beforeUpdate: User.beforeUpdate,
+      }
     }
   );
   return User;

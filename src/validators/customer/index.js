@@ -1,2 +1,1 @@
-export * as authValidator from './authValidator'
-export * as userValidator from './userValidator'
+export * as customerUserValidator from './userValidator'

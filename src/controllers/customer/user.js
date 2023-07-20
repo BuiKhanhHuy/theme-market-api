@@ -1,10 +1,10 @@
 import status from 'http-status';
 import tryCatch from '../../utils/tryCatch';
 import dataResponse from '../../utils/dataResponse';
-import { userService } from '../../services/customer';
+import { customerUserService } from '../../services/customer';
 
 export const getUser = tryCatch(async (req, res) => {
-  const usersData = await userService.getUser();
+  const usersData = await customerUserService.getUser();
 
   return dataResponse(res, {
     data: usersData,
@@ -14,7 +14,7 @@ export const getUser = tryCatch(async (req, res) => {
 export const getUserById = tryCatch(async (req, res) => {
   const pk = req.params?.id;
 
-  const userData = await userService.getUserById(pk);
+  const userData = await customerUserService.getUserById(pk);
 
   return dataResponse(res, {
     data: userData,
@@ -24,7 +24,7 @@ export const getUserById = tryCatch(async (req, res) => {
 export const addUser = tryCatch(async (req, res) => {
   const bodyData = req.body;
 
-  const userData = await userService.addUser(bodyData);
+  const userData = await customerUserService.addUser(bodyData);
 
   return dataResponse(res, {
     statusCode: status.CREATED,

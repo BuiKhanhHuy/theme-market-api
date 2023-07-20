@@ -1,10 +1,12 @@
 import express from 'express';
-import adminAuthRoute from './auth'
-import adminUserRoute from './user'
+import adminUserRoute from './user';
+import verifyToken from '../../middlewares/verifyToken';
+import { verifyAdminRole } from '../../middlewares/verifyRole';
 
 const router = express.Router();
 
-// router.use('/auth', adminAuthRoute);
-// router.use('/users', adminUserRoute);
+router.use(verifyToken);
+router.use(verifyAdminRole);
+router.use('/users', adminUserRoute);
 
 export default router;

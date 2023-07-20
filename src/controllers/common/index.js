@@ -1,0 +1,1 @@
+export * as commonAuthController from './auth'

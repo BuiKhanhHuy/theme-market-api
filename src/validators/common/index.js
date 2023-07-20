@@ -1,0 +1,1 @@
+export * as commonAuthValidator from './authValidator'
