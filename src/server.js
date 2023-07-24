@@ -7,14 +7,17 @@ import initRoutes from './routes';
 import errorHandler from './middlewares/errorHandler';
 
 var corsOptions = {
-  //   origin: process.env.CLIENT_URL,
-  //   optionsSuccessStatus: 200,
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials:true,  
 };
 const PORT = process.env.PORT || 8000;
 
 const app = express();
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

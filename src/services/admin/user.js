@@ -3,20 +3,58 @@ import db from '../../models';
 export const getUsers = () =>
   new Promise(async (resolve, reject) => {
     try {
-      const users = await db.User.findAll({
-        // attributes:  ['id'],
+      const { count, rows } = await db.User.findAndCountAll({
         raw: true,
+        nest: true,
+        attributes: [
+          'id',
+          'email',
+          'firstName',
+          'lastName',
+          'avatarUrl',
+          'isActive',
+          'isEmailVerified',
+        ],
+        include: [
+          {
+            model: db.Profession,
+            as: 'profession',
+            attributes: ['id', 'name'],
+          },
+        ],
       });
 
-      resolve(users);
+      resolve({
+        totalCount: count,
+        results: rows,
+      });
     } catch (error) {
       reject(error);
     }
   });
 
-export const getUserById = () =>
+export const getUserById = (pk) =>
   new Promise(async (resolve, reject) => {
     try {
+      const user = await db.User.findByPk(pk, {
+        attributes: [
+          'id',
+          'email',
+          'firstName',
+          'lastName',
+          'avatarUrl',
+          'isActive',
+          'isEmailVerified',
+          'deletedAt',
+          'roleName',
+          'professionId',
+          'createdAt',
+          'updatedAt',
+        ],
+        raw: true,
+      });
+
+      resolve(user);
     } catch (error) {
       reject(error);
     }
@@ -25,9 +63,8 @@ export const getUserById = () =>
 export const addUser = (data) =>
   new Promise(async (resolve, reject) => {
     try {
-      const user = await db.User.create(data)
+      const user = await db.User.create(data);
 
-      console.log('==> Usser: ', user);
       resolve(data);
     } catch (error) {
       reject(error);

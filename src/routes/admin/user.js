@@ -4,10 +4,10 @@ import { adminUserController } from '../../controllers/admin';
 const router = express.Router();
 
 router.get("/", adminUserController.getUsers)
-router.get("/:id", adminUserController.getUserById)
+router.get("/:pk", adminUserController.getUserById)
 router.post("/", adminUserController.addUser)
-router.put("/:id", adminUserController.updateUserById)
-router.delete('/:id', adminUserController.deleteUserById)
+router.put("/:pk", adminUserController.updateUserById)
+router.delete('/:pk', adminUserController.deleteUserById)
 router.post("/delete-many", adminUserController.deleteUserWithIdList)
 
 export default router;

@@ -31,7 +31,7 @@ export const signRefreshToken = (userId) =>
     };
     const secret = process.env.REFRESH_TOKEN_SECRET;
     const options = {
-      expiresIn: settings.JWT_ACCESS_TOKEN_EXPIRE_SECONDS,
+      expiresIn: settings.JWT_REFRESH_TOKEN_EXPIRE_SECONDS,
     };
 
     JWT.sign(payload, secret, options, (error, encoded) => {

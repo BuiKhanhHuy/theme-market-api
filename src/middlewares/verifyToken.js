@@ -7,7 +7,8 @@ import { signRefreshToken, verifyAccessToken } from '../helpers/jwtHelper';
 const verifyToken = async (req, res, next) => {
   try {
     const authorization = req.headers.authorization;
-    const authorizationSplit = authorization.split(' ') || [];
+    const authorizationSplit =
+      (authorization && authorization.split(' ')) || [];
 
     if (authorizationSplit.length !== 2) {
       return dataResponse(res, {
@@ -49,13 +50,13 @@ const verifyToken = async (req, res, next) => {
         }
 
         redisUser = {
-            ...user,
-            refreshToken: await signRefreshToken(userId),
+          ...user,
+          refreshToken: await signRefreshToken(userId),
         };
-        await redisClient.SET(userId, JSON.stringify(redisUser))
+        await redisClient.SET(userId, JSON.stringify(redisUser));
       }
 
-      req.roleName = redisUser.roleName;
+      req.user = redisUser;
       next();
     } else {
       return dataResponse(res, {
@@ -65,7 +66,7 @@ const verifyToken = async (req, res, next) => {
     }
   } catch (error) {
     return dataResponse(res, {
-      statusCode: error.status,
+      statusCode: error.statusCode || status.INTERNAL_SERVER_ERROR,
       errors: [error.message],
     });
   }

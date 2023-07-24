@@ -1,4 +1,4 @@
-import status from 'http-status'
+import status from 'http-status';
 import tryCatch from '../../utils/tryCatch';
 import dataResponse from '../../utils/dataResponse';
 import { commonAuthValidator } from '../../validators/common';
@@ -22,13 +22,14 @@ export const getToken = tryCatch(async (req, res) => {
 
 export const getRefreshToken = tryCatch(async (req, res) => {
   const bodyData = req.body;
-  const { error, value } = commonAuthValidator.getRefreshTokenSchema.validate(bodyData);
+  const { error, value } =
+    commonAuthValidator.getRefreshTokenSchema.validate(bodyData);
 
   if (error) {
     throw error;
   }
 
-  const response = await commonAuthService.getRefreshToken(value)
+  const response = await commonAuthService.getRefreshToken(value);
 
   return dataResponse(res, {
     data: response,
@@ -37,16 +38,25 @@ export const getRefreshToken = tryCatch(async (req, res) => {
 
 export const revokerToken = tryCatch(async (req, res) => {
   const bodyData = req.body;
-  const { error, value } = commonAuthValidator.revokeTokenSchema.validate(bodyData);
+  const { error, value } =
+    commonAuthValidator.revokeTokenSchema.validate(bodyData);
 
   if (error) {
     throw error;
   }
 
-  const response = await commonAuthService.revokeToken(value)
+  const response = await commonAuthService.revokeToken(value);
 
   return dataResponse(res, {
     data: response,
-    statusCode: status.NO_CONTENT
+    statusCode: status.NO_CONTENT,
+  });
+});
+
+export const getCurrentUser = tryCatch(async (req, res) => {
+  const { refreshToken, ...currentUser } = req.user;
+
+  return dataResponse(res, {
+    data: currentUser,
   });
 });

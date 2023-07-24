@@ -5,8 +5,7 @@ import { verifyAdminRole } from '../../middlewares/verifyRole';
 
 const router = express.Router();
 
-router.use(verifyToken);
-router.use(verifyAdminRole);
+router.use([verifyToken, verifyAdminRole]);
 router.use('/users', adminUserRoute);
 
 export default router;
