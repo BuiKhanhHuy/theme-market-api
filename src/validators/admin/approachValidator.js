@@ -4,6 +4,10 @@ export const addApproachSchema = Joi.object({
   name: Joi.string().required().max(100)
 });
 
-export const updateApproachSchema = Joi.object({});
+export const updateApproachSchema = Joi.object({
+  name: Joi.string().required().max(100),
+});
 
-export const deleteApproachWithIdListSchema = Joi.object({});
+export const deleteApproachWithIdListSchema = Joi.object({
+  idList: Joi.array().items(Joi.number())
+});

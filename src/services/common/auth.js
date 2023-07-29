@@ -3,7 +3,7 @@ import status from 'http-status';
 import { Op } from 'sequelize';
 import * as settings from '../../config/settings';
 import db from '../../models';
-import AppError from '../../AppError';
+import AppError from '../../utils/AppError';
 import redisClient from '../../helpers/initRedis';
 import {
   signAccessToken,

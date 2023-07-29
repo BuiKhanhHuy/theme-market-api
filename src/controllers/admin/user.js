@@ -1,6 +1,6 @@
 import status from 'http-status';
 import tryCatch from '../../utils/tryCatch';
-import AppError from '../../AppError';
+import AppError from '../../utils/AppError';
 import dataResponse from '../../utils/dataResponse';
 import { adminUserValidator } from '../../validators/admin';
 import { adminUserService } from '../../services/admin';

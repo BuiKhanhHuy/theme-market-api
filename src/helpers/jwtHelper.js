@@ -3,7 +3,7 @@ import status from 'http-status';
 import JWT, { decode } from 'jsonwebtoken';
 import * as settings from '../config/settings';
 import redisClient from './initRedis';
-import AppError from '../AppError';
+import AppError from '../utils/AppError';
 
 export const signAccessToken = (userId) =>
   new Promise((resolve, reject) => {

@@ -38,3 +38,6 @@
 
 
 #### If you like project then feel free to give Star 😅
+
+
+, { abortEarly: false }

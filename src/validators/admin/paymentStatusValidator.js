@@ -5,6 +5,10 @@ export const addPaymentStatusSchema = Joi.object({
   desciption: Joi.string().default("").max(255)
 });
 
-export const updatePaymentStatusSchema = Joi.object({});
+export const updatePaymentStatusSchema = Joi.object({
+  name: Joi.string().required().max(100),
+});
 
-export const deletePaymentStatusWithIdListSchema = Joi.object({});
+export const deletePaymentStatusWithIdListSchema = Joi.object({
+  idList: Joi.array().items(Joi.number())
+});
