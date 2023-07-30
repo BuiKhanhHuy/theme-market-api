@@ -8,7 +8,7 @@ import { tagFilter } from '../../filters/admin/tagFilter';
 
 export const getTags = tryCatch(async (req, res) => {
   const queryParams = req?.query;
-  const filter = professionListFilter(tagFilter);
+  const filter = tagFilter(queryParams);
 
   const response = await adminTagService.getTags(filter);
   return dataResponse(res, {

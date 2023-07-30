@@ -7,6 +7,7 @@ export const addPaymentTypeSchema = Joi.object({
 
 export const updatePaymentTypeSchema = Joi.object({
   name: Joi.string().required().max(100),
+  desciption: Joi.string().default("").max(255)
 });
 
 export const deletePaymentTypeWithIdListSchema = Joi.object({

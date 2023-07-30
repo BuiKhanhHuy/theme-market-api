@@ -8,7 +8,7 @@ export const getProductTypes = (filter) =>
       const { count, rows } = await db.ProductType.findAndCountAll({
         raw: true,
         nest: true,
-        attributes: ['id', 'name'],
+        attributes: ['id', 'name', 'description'],
         ...filter,
       });
 
@@ -25,7 +25,7 @@ export const getProductTypeById = (pk) =>
   new Promise(async (resolve, reject) => {
     try {
       const productType = await db.ProductType.findByPk(pk, {
-        attributes: ['id', 'name', 'createdAt', 'updatedAt'],
+        attributes: ['id', 'name', 'description', 'createdAt', 'updatedAt'],
         raw: true,
       });
 

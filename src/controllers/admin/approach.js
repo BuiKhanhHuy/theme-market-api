@@ -34,7 +34,7 @@ export const addApproach = tryCatch(async (req, res) => {
   const bodyData = req.body;
 
   const { error, value } =
-    adminApproachValidator.addProfessionSchema.validate(bodyData);
+    adminApproachValidator.addApproachSchema.validate(bodyData);
   if (error) {
     throw error;
   }
