@@ -17,7 +17,8 @@
  - Redux
  
  👉 Frontend repo link: [Theme market web app](https://github.com/BuiKhanhHuy/theme-market-app) 
- 
+
+ 👉 Admin repo link: [Theme market admin](https://github.com/BuiKhanhHuy/theme-market-app-admin) 
 
 
 <br />
